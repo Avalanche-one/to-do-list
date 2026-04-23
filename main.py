@@ -7,8 +7,6 @@ def show_menu():
     print("=" * 20)
     for key, value in menu_options.items():
         print(f"{key}: {value}")
-#Tasks list
-tasks_list = []
 #Show Tasks Function
 def show_tasks(tasks):
     if tasks:
@@ -31,10 +29,17 @@ def remove_task(tasks):
         print("Your task has been removed!")
     else:
         print("No tasks to remove")
+#Tasks List
+tasks_list = []
 #Main cycle
 while True:
     show_menu()
     choice = int(input("Enter your choice: "))
-    print(f"You've chosen {choice}")
-    if choice == 4:
+    if choice == 1:
+        show_tasks(tasks_list)
+    elif choice == 2:
+        add_task(tasks_list)
+    elif choice == 3:
+        remove_task(tasks_list)
+    elif choice == 4:
         break
