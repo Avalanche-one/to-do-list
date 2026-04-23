@@ -16,6 +16,11 @@ def show_tasks(tasks):
             print(f"{key}: {task}")
     else:
         print("No tasks")
+#Add Task Function
+def add_task(tasks):
+    new_task = input("Enter new task: ")
+    tasks.append(new_task)
+    print("Your new task has been added!")
 #Main cycle
 while True:
     show_menu()
