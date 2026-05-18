@@ -1,5 +1,5 @@
 #Menu function
-def show_menu():
+def show_menu(): #Menu function
     title = "To Do List"
     menu_options = {1: "Show Tasks", 2: "Add Task", 3: "Remove Task", 4: "Quit"}
     print("=" * 20)
@@ -35,8 +35,21 @@ def remove_task(tasks):
             print("You must enter a valid number")
     else:
         print("No tasks to remove")
+#Save to File Function
+def save_tasks(tasks):
+    with open("tasks.txt", "w") as file:
+        for task in tasks:
+            file.write(f"{task}\n")
+#Load File Function
+def load_tasks():
+    try:
+        with open("tasks.txt", "r") as file:
+            lines = file.readlines()
+            return [line.strip() for line in lines]
+    except FileNotFoundError:
+        return []
 #Tasks List
-tasks_list = []
+tasks_list = load_tasks()
 #Main cycle
 while True:
     show_menu()
@@ -48,8 +61,10 @@ while True:
             show_tasks(tasks_list)
         elif choice == 2:
             add_task(tasks_list)
+            save_tasks(tasks_list)
         elif choice == 3:
             remove_task(tasks_list)
+            save_tasks(tasks_list)
         elif choice == 4:
             break
     except ValueError:
