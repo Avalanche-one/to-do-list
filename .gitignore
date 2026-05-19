@@ -1,1 +1,5 @@
 tasks.txt
+# PyInstaller
+dist/
+build/
+*.spec
