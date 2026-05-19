@@ -1,5 +1,19 @@
 import tkinter as tk
-
+#save function
+def save_tasks():
+    tasks = listbox.get(0, tk.END)  # отримати всі елементи з Listbox
+    with open("tasks.txt", "w") as file:
+        for task in tasks:
+            file.write(f"{task}\n")
+#load function
+def load_tasks():
+    try:
+        with open("tasks.txt", "r") as file:
+            lines = file.readlines()
+            for line in lines:
+                listbox.insert(tk.END, line.strip())
+    except FileNotFoundError:
+        pass
 #add task function
 def add_task():
     task = entry.get()        # отримати текст з поля вводу
@@ -34,20 +48,5 @@ add_button.pack(pady=5)
 remove_button = tk.Button(window, text="Видалити", command=remove_task)
 remove_button.pack(pady=5)
 
-#save function
-def save_tasks():
-    tasks = listbox.get(0, tk.END)  # отримати всі елементи з Listbox
-    with open("tasks.txt", "w") as file:
-        for task in tasks:
-            file.write(f"{task}\n")
-#load function
-def load_tasks():
-    try:
-        with open("tasks.txt", "r") as file:
-            lines = file.readlines()
-            for line in lines:
-                listbox.insert(tk.END, line.strip())
-    except FileNotFoundError:
-        pass
 load_tasks()
 window.mainloop()
